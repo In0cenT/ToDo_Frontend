@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TodoListComponent} from './todo-list/todo-list.component';
 import {HttpClientModule} from '@angular/common/http';
 
-
+import { MatDialogModule } from '@angular/material';
 
 
 import {
@@ -24,6 +24,7 @@ from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { ToDoDialogComponent } from './to-do-dialog/to-do-dialog.component';
 
 
 const materialModules = [
@@ -46,17 +47,22 @@ const materialModules = [
         AppComponent,
         TodoListComponent,
         FooterComponent,
-        HeaderComponent
+        HeaderComponent,
+        ToDoDialogComponent
     ],
     imports: [
         materialModules,
         BrowserAnimationsModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        MatDialogModule
     ],
     exports: [
         materialModules,
         BrowserAnimationsModule,
+    ],
+    entryComponents: [
+      ToDoDialogComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

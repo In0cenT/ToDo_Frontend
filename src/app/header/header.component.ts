@@ -1,5 +1,7 @@
 import {Component, Input, OnInit, Inject} from '@angular/core';
 import {TodoService} from '../shared/todo.service';
+import {ToDoDialogComponent} from '../to-do-dialog/to-do-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'app-header',
@@ -13,7 +15,7 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
     }
 
-    constructor(private todoService: TodoService) {
+    constructor(private todoService: TodoService, private dialog: MatDialog) {
     }
 
     addToDo() {
@@ -22,4 +24,11 @@ export class HeaderComponent implements OnInit {
         });
     }
 
+    openDialog(): void {
+        const dialogRef = this.dialog.open(ToDoDialogComponent, {});
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+        });
+    }
 }

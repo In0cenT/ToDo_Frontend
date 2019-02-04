@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Add Todo</h1>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput type="text" placeholder="TaskName" [(ngModel)]="toDoData.taskName" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="extra note" [(ngModel)]="toDoData.extraNote">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput type="date" placeholder="Date" [(ngModel)]="toDoData.dueDate" required>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button>No Thanks</button>
+  <button mat-button (click)="saveToDo()">Ok</button>
+</div>
