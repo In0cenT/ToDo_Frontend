@@ -1,0 +1,19 @@
+<div class="example-button-row">
+  <button mat-raised-button (click)="openDialog()">Pick one</button>
+</div>
+
+<div class="example-container">
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="TaskName" [(ngModel)]="toDoData.taskName" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="extra note" [(ngModel)]="toDoData.extraNote">
+  </mat-form-field>
+
+
+  <mat-form-field>
+    <input matInput type="date" placeholder="Date" [(ngModel)]="toDoData.dueDate" required>
+  </mat-form-field>
+</div>
