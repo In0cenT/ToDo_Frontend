@@ -1,24 +1,25 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Inject} from '@angular/core';
 import {TodoService} from '../shared/todo.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
 
-  ngOnInit() {
-  }
+    @Input() toDoData = {taskName: '', extraNote: '', taskCompleted: false, dueDate: Date};
 
-  constructor(private todoService: TodoService) {
-  }
+    ngOnInit() {
+    }
 
-  @Input() toDoData = {taskName: '', extraNote: '', taskCompleted: false, dueDate: Date};
+    constructor(private todoService: TodoService) {
+    }
 
-  addToDo() {
-    this.todoService.addToDo(this.toDoData).subscribe((result) => {
-      this.todoService.addToDo(this.toDoData);
-    });
-  }
+    addToDo() {
+        this.todoService.addToDo(this.toDoData).subscribe((result) => {
+            this.todoService.addToDo(this.toDoData);
+        });
+    }
+
 }

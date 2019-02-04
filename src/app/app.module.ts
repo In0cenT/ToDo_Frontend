@@ -19,8 +19,8 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatSelectModule,
-    MatDialog
-} from '@angular/material';
+}
+from '@angular/material';
 import {FormsModule} from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
@@ -39,7 +39,6 @@ const materialModules = [
     MatInputModule,
     MatTooltipModule,
     MatSelectModule,
-    MatDialog
 ];
 
 @NgModule({
