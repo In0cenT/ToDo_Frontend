@@ -1,37 +1,28 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-offset-12 col-sm-12">
-            <ul class="event-list">
-                <li
-                        *ngFor="let todo of todoList"
-                >
-                    <time datetime="" [ngClass]="todo.taskCompleted ? 'green': 'red'">
-                        <span class="day">{{todo.dueDate | date:'EEE'}}</span>
-                        <span class="month">{{todo.dueDate | date:'LL'}}</span>
-                        <span class="month">{{todo.dueDate | date:'LLL'}}</span>
-                        <span class="month">{{todo.taskCompleted}}</span>
-                    </time>
+<mat-card class="example-card" *ngFor="let todo of todoList">
+    <mat-card-header>
+        <div mat-card-avatar>
+            <mat-icon [ngClass]="todo.taskCompleted ? 'green' : 'red' ">thumb_up</mat-icon>
 
-                    <div class="info">
-                        <h2 class="title">{{todo.taskName}}</h2>
-                        <p class="desc">{{todo.extraNote}}</p>
-                    </div>
-                    <div class="social">
-                        <ul>
-
-                            <li class="edit" style="width:33%;">
-                                <a href="#"><span class="fa fa-pencil-square-o"></span></a>
-                            </li>
-                            <li class="confirm" style="width:34%;">
-                                <a href="#"><span class="fa fa-check"></span></a>
-                            </li>
-                            <li class="delete" style="width:33%;">
-                                <a href="" rel="nofollow" (click)="delete(todo.id)"><span class="fa fa-trash-o"></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
         </div>
-    </div>
-</div>
+        <mat-card-title>{{todo.taskName}}</mat-card-title>
+        <mat-card-subtitle>
+            <mat-icon style="font-size: 15px">calendar_today</mat-icon>
+            {{todo.dueDate | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            {{todo.extraNote}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions align="center">
+        <button mat-button (click)="completed(todo.id, todo)">
+            <mat-icon>done</mat-icon>
+        </button>
+        <button mat-button>
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button (click)="delete(todo.id)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

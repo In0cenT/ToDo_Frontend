@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TodoService} from '../shared/todo.service';
+import {Todo} from '../shared/todo';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-todo-list',
@@ -14,6 +16,7 @@ export class TodoListComponent implements OnInit {
     }
 
     @Input() toDoData = {taskName: '', taskCompleted: false, date: Date};
+
 
     ngOnInit() {
         this.getToDos();
@@ -35,5 +38,15 @@ export class TodoListComponent implements OnInit {
                     console.log(err);
                 }
             );
+    }
+
+    completed(id, todo) {
+        todo.taskCompleted = !todo.taskCompleted;
+        this.todoService.updateToDo(id, todo)
+            .subscribe(res => {
+                this.getToDos();
+            }, (err) => {
+                console.log(err);
+            });
     }
 }

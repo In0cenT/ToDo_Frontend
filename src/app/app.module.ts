@@ -18,7 +18,7 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatSelectModule,
+    MatSelectModule
 }
 from '@angular/material';
 import {FormsModule} from '@angular/forms';
