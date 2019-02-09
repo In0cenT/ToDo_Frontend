@@ -1,6 +1,4 @@
-import {Component, Input} from '@angular/core';
-import {TodoService} from './shared/todo.service';
-import {NgForm} from '@angular/forms';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +6,6 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Frontend';
 
 
 }

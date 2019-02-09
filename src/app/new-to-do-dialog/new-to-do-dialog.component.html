@@ -5,19 +5,18 @@
         <input matInput type="text" placeholder="TaskName" [(ngModel)]="toDoData.taskName" required>
     </mat-form-field>
 
-
     <mat-form-field>
         <input matInput type="date" placeholder="Date" [(ngModel)]="toDoData.dueDate" required>
     </mat-form-field>
 </div>
 
-<div style="width: 100%;">
+<div>
     <mat-form-field class="full-width">
-        <textarea matInput type="text" placeholder="extra note" [(ngModel)]="toDoData.extraNote" fullwidth></textarea>
+        <input matInput type="text" placeholder="extra note" [(ngModel)]="toDoData.extraNote">
     </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
     <button mat-button>No Thanks</button>
-    <button mat-button (click)="saveToDo()">Ok</button>
+    <button mat-button (click)="saveToDo()" >Ok</button>
 </div>

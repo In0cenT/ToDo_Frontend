@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TodoListComponent} from './todo-list/todo-list.component';
 import {HttpClientModule} from '@angular/common/http';
 
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material';
 
 
 import {
@@ -19,12 +19,13 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatSelectModule
-}
-from '@angular/material';
+} from '@angular/material';
+
 import {FormsModule} from '@angular/forms';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { ToDoDialogComponent } from './to-do-dialog/to-do-dialog.component';
+import {FooterComponent} from './footer/footer.component';
+import {HeaderComponent} from './header/header.component';
+import {NewToDoDialogComponent} from './new-to-do-dialog/new-to-do-dialog.component';
+import {EditToDoDialogComponent} from './edit-to-do-dialog/edit-to-do-dialog.component';
 
 
 const materialModules = [
@@ -48,7 +49,8 @@ const materialModules = [
         TodoListComponent,
         FooterComponent,
         HeaderComponent,
-        ToDoDialogComponent
+        NewToDoDialogComponent,
+        EditToDoDialogComponent
     ],
     imports: [
         materialModules,
@@ -62,9 +64,10 @@ const materialModules = [
         BrowserAnimationsModule,
     ],
     entryComponents: [
-      ToDoDialogComponent
+        NewToDoDialogComponent,
+        EditToDoDialogComponent
     ],
-    providers: [],
+    providers: [TodoListComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {
