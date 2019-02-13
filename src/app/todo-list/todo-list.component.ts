@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, Pipe, PipeTransform} from '@angular/core';
-import {TodoService} from '../shared/todo.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {EditToDoDialogComponent} from '../edit-to-do-dialog/edit-to-do-dialog.component';
+import {TodoListService} from '../shared/todo-list-service';
 
 
 @Component({
@@ -11,9 +11,8 @@ import {EditToDoDialogComponent} from '../edit-to-do-dialog/edit-to-do-dialog.co
 })
 export class TodoListComponent implements OnInit {
 
-    todoList: Array<any> = [];
 
-    constructor(private todoService: TodoService, private dialog: MatDialog) {
+    constructor(private dialog: MatDialog, private todoListService: TodoListService) {
     }
 
 
@@ -21,36 +20,6 @@ export class TodoListComponent implements OnInit {
 
 
     ngOnInit() {
-        this.getToDos();
-    }
-
-    getToDos() {
-        this.todoList = [];
-        this.todoService.getToDos()
-            .subscribe((data: []) => {
-                console.log('Todo List get Todos ', data);
-                this.todoList = data;
-            });
-    }
-
-    delete(id) {
-        this.todoService.deleteToDo(id)
-            .subscribe(res => {
-                    this.getToDos();
-                }, (err) => {
-                    console.log(err);
-                }
-            );
-    }
-
-    completed(id, todo) {
-        todo.taskCompleted = !todo.taskCompleted;
-        this.todoService.updateToDo(id, todo)
-            .subscribe(res => {
-                this.getToDos();
-            }, (err) => {
-                console.log(err);
-            });
     }
 
     openDialog(todo): void {
@@ -63,13 +32,5 @@ export class TodoListComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
         });
-    }
-
-    printList() {
-        console.log('print list button', this.todoList);
-    }
-
-    callGetToDo() {
-        this.getToDos();
     }
 }

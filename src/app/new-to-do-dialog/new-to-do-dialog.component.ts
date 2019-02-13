@@ -1,6 +1,7 @@
 import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {TodoService} from '../shared/todo.service';
+import {TodoListService} from '../shared/todo-list-service';
 
 @Component({
     selector: 'app-to-do-dialog',
@@ -9,11 +10,10 @@ import {TodoService} from '../shared/todo.service';
 })
 export class NewToDoDialogComponent implements OnInit {
 
-    @Input() toDoData = {taskName: '', extraNote: '', taskCompleted: false, dueDate: Date};
 
     constructor(
         public dialogRef: MatDialogRef<NewToDoDialogComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any, private todoService: TodoService) {
+        @Inject(MAT_DIALOG_DATA) public data: any, private todoListService: TodoListService) {
     }
 
 
@@ -23,11 +23,7 @@ export class NewToDoDialogComponent implements OnInit {
 
     saveToDo() {
         this.dialogRef.close();
-        this.todoService.addToDo(this.toDoData)
-            .subscribe((result) => {
-                /*console.log(result);*/
-            });
-
+        this.todoListService.addToDo();
     }
 }
 

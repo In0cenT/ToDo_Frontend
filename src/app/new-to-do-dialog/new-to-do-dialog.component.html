@@ -2,17 +2,17 @@
 
 <div mat-dialog-content>
     <mat-form-field>
-        <input matInput type="text" placeholder="TaskName" [(ngModel)]="toDoData.taskName" required>
+        <input matInput type="text" placeholder="TaskName" [(ngModel)]="todoListService.toDoData.taskName" required>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="date" placeholder="Date" [(ngModel)]="toDoData.dueDate" required>
+        <input matInput type="date" placeholder="Date" [(ngModel)]="todoListService.toDoData.dueDate" required>
     </mat-form-field>
 </div>
 
 <div>
     <mat-form-field class="full-width">
-        <input matInput type="text" placeholder="extra note" [(ngModel)]="toDoData.extraNote">
+        <input matInput type="text" placeholder="extra note" [(ngModel)]="todoListService.toDoData.extraNote">
     </mat-form-field>
 </div>
 
