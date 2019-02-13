@@ -1,31 +1,41 @@
 import {Injectable, Input} from '@angular/core';
-import {BehaviorSubject, ReplaySubject, Subject} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {TodoService} from './todo.service';
-import {Todo} from './todo';
-import {shareReplay} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
+import {ToDo} from './todo.model';
 
 
 @Injectable({providedIn: 'root'})
 export class TodoListService {
 
+    showCompleted = false;
+
     @Input() toDoData = {taskName: '', extraNote: '', taskCompleted: false, dueDate: Date};
-
-
-    private readonly todoListSource = new BehaviorSubject<Todo[]>([]);
 
     constructor(private todoService: TodoService) {
         this.getToDos();
     }
 
+    private readonly todoListSource = new BehaviorSubject<ToDo[]>([]);
+
     readonly todos$ = this.todoListSource.asObservable().pipe(
         shareReplay(1)
     );
 
-    get todos(): Todo[] {
+    readonly completedToDos$ = this.todos$.pipe(
+        shareReplay(1),
+        map(todos => this.todos.filter(todo => todo.taskCompleted))
+    );
+    readonly incompletedToDos$ = this.todos$.pipe(
+        shareReplay(1),
+        map(todos => this.todos.filter(todo => !todo.taskCompleted))
+    );
+
+    get todos(): ToDo[] {
         return this.todoListSource.getValue();
     }
 
-    set todos(val: Todo[]) {
+    set todos(val: ToDo[]) {
         this.todoListSource.next(val);
     }
 
@@ -33,13 +43,12 @@ export class TodoListService {
     getToDos() {
         this.todoService.getToDos()
             .subscribe((data: []) => {
-                console.log('Todo List get Todos Service: ', data);
+                console.log('TodoModel List get Todos Service: ', data);
                 this.todos = data;
             });
     }
 
     addToDo() {
-
         this.todoService.addToDo(this.toDoData)
             .subscribe((result) => {
                 /*console.log(result);*/

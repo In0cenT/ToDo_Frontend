@@ -1,22 +1,41 @@
-<h1 mat-dialog-title>Add Todo</h1>
+<h1 mat-dialog-title>Add TodoModel</h1>
 
-<div mat-dialog-content>
+<form>
     <mat-form-field>
-        <input matInput type="text" placeholder="TaskName" [(ngModel)]="todoListService.toDoData.taskName" required>
+        <input matInput
+               type="text"
+               placeholder="TaskName"
+               [(ngModel)]="todoListService.toDoData.taskName"
+               name="taskName"
+               required>
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput type="date" placeholder="Date" [(ngModel)]="todoListService.toDoData.dueDate" required>
+        <input matInput [matDatepicker]="picker"
+               [min]="minDate"
+               [max]="maxDate"
+               placeholder="Choose a date"
+               [(ngModel)]="todoListService.toDoData.dueDate"
+               name="date"
+               required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-</div>
 
-<div>
-    <mat-form-field class="full-width">
-        <input matInput type="text" placeholder="extra note" [(ngModel)]="todoListService.toDoData.extraNote">
-    </mat-form-field>
-</div>
+    <div>
+        <mat-form-field class="full-width">
+            <input matInput
+                   type="text"
+                   placeholder="extra note"
+                   [(ngModel)]="todoListService.toDoData.extraNote"
+                   name="extraNote">
+        </mat-form-field>
+    </div>
 
-<div mat-dialog-actions>
-    <button mat-button>No Thanks</button>
-    <button mat-button (click)="saveToDo()" >Ok</button>
-</div>
+    <button mat-flat-button>No Thanks</button>
+    <button mat-flat-button color="primary" (click)="saveToDo()" [disabled]="false">Ok</button>
+    <button (click)="checkValid()"></button>
+
+
+</form>
+

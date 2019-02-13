@@ -11,8 +11,7 @@ import {TodoListService} from '../shared/todo-list-service';
 })
 export class TodoListComponent implements OnInit {
 
-
-    constructor(private dialog: MatDialog, private todoListService: TodoListService) {
+    constructor(private dialog: MatDialog, private todoListService: TodoListService, private test: TodoListService) {
     }
 
 

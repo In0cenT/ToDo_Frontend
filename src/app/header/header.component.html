@@ -1,7 +1,18 @@
-<mat-toolbar class="mat-toolbar">
-  <span>My ToDo App</span>
-  <span class="fill-space"></span>
-  <button mat-raised-button (click)="openDialog()">New ToDo</button>
+<mat-toolbar color="primary">
+    <span>My ToDo App</span>
+    <span class="fill-space"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-primary">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+            <mat-checkbox [(ngModel)]="todoListService.showCompleted">View Completed</mat-checkbox>
+        </button>
+    </mat-menu>
+
+    <button mat-raised-button (click)="openDialog()">New ToDo</button>
 </mat-toolbar>
 
 

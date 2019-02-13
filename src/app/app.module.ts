@@ -18,10 +18,15 @@ import {
     MatSidenavModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+
 } from '@angular/material';
 
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FooterComponent} from './footer/footer.component';
 import {HeaderComponent} from './header/header.component';
 import {NewToDoDialogComponent} from './new-to-do-dialog/new-to-do-dialog.component';
@@ -41,6 +46,10 @@ const materialModules = [
     MatInputModule,
     MatTooltipModule,
     MatSelectModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
 ];
 
 @NgModule({
@@ -57,7 +66,8 @@ const materialModules = [
         BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
-        MatDialogModule
+        MatDialogModule,
+        ReactiveFormsModule
     ],
     exports: [
         materialModules,
@@ -67,7 +77,10 @@ const materialModules = [
         NewToDoDialogComponent,
         EditToDoDialogComponent
     ],
-    providers: [TodoListComponent],
+    providers: [
+        TodoListComponent,
+        MatDatepickerModule
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

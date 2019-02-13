@@ -1,31 +1,63 @@
-<mat-card class="example-card" *ngFor="let todo of todoListService.todos">
-    <mat-card-header>
-        <div mat-card-avatar>
-            <mat-icon [ngClass]="todo.taskCompleted ? 'green' : 'red' ">thumb_up</mat-icon>
+<div *ngIf="todoListService.showCompleted">
+    <mat-card class="example-card" *ngFor="let todo of todoListService.todos$ | async">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon [ngClass]="todo.taskCompleted ? 'green' : 'red' ">thumb_up</mat-icon>
 
-        </div>
-        <mat-card-title>{{todo.taskName}}</mat-card-title>
-        <mat-card-subtitle>
-            <mat-icon style="font-size: 15px">calendar_today</mat-icon>
-            {{todo.dueDate | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <p>
-            {{todo.extraNote}}
-        </p>
-    </mat-card-content>
-    <mat-card-actions align="center">
-        <button mat-button (click)="todoListService.completed(todo.id, todo)">
-            <mat-icon *ngIf="!todo.taskCompleted">done</mat-icon>
-            <mat-icon *ngIf="todo.taskCompleted">close</mat-icon>
-        </button>
-        <button mat-button (click)="openDialog(todo)">
-            <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-button (click)="todoListService.deleteToDo(todo.id)">
-            <mat-icon>delete</mat-icon>
-        </button>
-    </mat-card-actions>
-</mat-card>
+            </div>
+            <mat-card-title>{{todo.taskName}}</mat-card-title>
+            <mat-card-subtitle>
+                <mat-icon style="font-size: 15px">calendar_today</mat-icon>
+                {{todo.dueDate | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{todo.extraNote}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions align="center">
+            <button mat-button (click)="todoListService.completed(todo.id, todo)">
+                <mat-icon *ngIf="!todo.taskCompleted">done</mat-icon>
+                <mat-icon *ngIf="todo.taskCompleted">close</mat-icon>
+            </button>
+            <button mat-button (click)="openDialog(todo)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button (click)="todoListService.deleteToDo(todo.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
 
+<div *ngIf="!todoListService.showCompleted">
+    <mat-card class="example-card" *ngFor="let todo of todoListService.incompletedToDos$ | async">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon [ngClass]="todo.taskCompleted ? 'green' : 'red' ">thumb_up</mat-icon>
 
+            </div>
+            <mat-card-title>{{todo.taskName}}</mat-card-title>
+            <mat-card-subtitle>
+                <mat-icon style="font-size: 15px">calendar_today</mat-icon>
+                {{todo.dueDate | date: 'dd.MM.yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{todo.extraNote}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions align="center">
+            <button mat-button (click)="todoListService.completed(todo.id, todo)">
+                <mat-icon *ngIf="!todo.taskCompleted">done</mat-icon>
+                <mat-icon *ngIf="todo.taskCompleted">close</mat-icon>
+            </button>
+            <button mat-button (click)="openDialog(todo)">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button (click)="todoListService.deleteToDo(todo.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
