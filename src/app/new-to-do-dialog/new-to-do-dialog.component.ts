@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {TodoListService} from '../shared/todo-list-service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 @Component({
     selector: 'app-to-do-dialog',
@@ -17,25 +19,30 @@ export class NewToDoDialogComponent implements OnInit {
     minDate = new Date(2000, 0, 1);
     maxDate = new Date(2020, 0, 1);
 
+    todoForm: FormGroup;
+
 
     ngOnInit() {
+        this.createForm();
     }
-
 
     saveToDo() {
         this.dialogRef.close();
+        this.todoListService.toDoData.taskName = this.todoForm.get('taskName').value;
+        this.todoListService.toDoData.dueDate = this.todoForm.get('dueDate').value;
+        this.todoListService.toDoData.extraNote = this.todoForm.get('extraNote').value;
         this.todoListService.addToDo();
     }
 
-    log() {
-        console.log(this.todoListService.toDoData.taskName, (!this.todoListService.toDoData.dueDate));
+
+    createForm() {
+        this.todoForm = new FormGroup({
+            taskName: new FormControl(''),
+            dueDate: new FormControl(''),
+            extraNote: new FormControl('')
+        });
     }
 
-    checkValid() {
-        if ((this.todoListService.toDoData.taskName.length > 1) || (this.todoListService.toDoData.dueDate != null)) {
-            console.log('not null');
-        }
-    }
 
 }
 
