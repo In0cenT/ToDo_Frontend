@@ -43,7 +43,7 @@ export class TodoListService {
     getToDos() {
         this.todoService.getToDos()
             .subscribe((data: []) => {
-                console.log('TodoModel List get Todos Service: ', data);
+                //console.log('TodoModel List get Todos Service: ', data);
                 this.todos = data;
             });
     }
@@ -51,7 +51,7 @@ export class TodoListService {
     addToDo() {
         this.todoService.addToDo(this.toDoData)
             .subscribe((result) => {
-                /*console.log(result);*/
+                //console.log(result);
             });
 
     }

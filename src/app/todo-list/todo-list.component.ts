@@ -22,14 +22,14 @@ export class TodoListComponent implements OnInit {
     }
 
     openDialog(todo): void {
-        console.log('TodoList Dialog Open: ', todo);
+        //console.log('TodoList Dialog Open: ', todo);
         const dialogRef = this.dialog.open(EditToDoDialogComponent, {
             data: {
                 todoUpdate: todo,
             }
         });
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            //console.log('The dialog was closed');
         });
     }
 }

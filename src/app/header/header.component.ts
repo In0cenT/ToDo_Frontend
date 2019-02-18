@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     openDialog(): void {
         const dialogRef = this.dialog.open(NewToDoDialogComponent, {});
         dialogRef.afterClosed().subscribe(result => {
-            console.log('The dialog was closed');
+            //console.log('The dialog was closed');
             this.todoListService.getToDos();
         });
     }
